@@ -32,3 +32,6 @@ $RECYCLE.BIN/
 #visual studio files
 *.sdf
 *.suo
+
+#Debug files
+[Dd]ebug/
