@@ -1,6 +1,7 @@
 //#pragma once
 #ifndef _H_escena_H_
 #define _H_escena_H_
+
 #include "tipos.h"
 #include "Geometry.h"
 

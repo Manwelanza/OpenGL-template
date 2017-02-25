@@ -27,6 +27,7 @@ bool Geometry::isInitiated() {
 	return true;
 }
 
+// Lines
 void Geometry::drawLine(PVec3 origin, PVec3 destination, PVec3 color ) {
 	PVec3 points[2], colors[2];
 	points[0] = origin;
@@ -59,4 +60,25 @@ void Geometry::drawLines(int lines, PVec3 points[], PVec3 colors[]){
 
 	glDisableClientState(GL_COLOR_ARRAY);
 	glDisableClientState(GL_VERTEX_ARRAY);
+}
+
+// Triangles
+void Geometry::drawTriangle(int vertex_number, GLdouble radius) {
+	//TODO: Añadir que se le pase un punto como eje central y lo dibujo con ese centro
+	MallaTri triangle = *new MallaTri(vertex_number, radius);
+	triangle.draw();
+}
+
+MallaTri Geometry::createTriangle(int vertex_number, GLdouble radius) {
+	return *new MallaTri(vertex_number, radius);
+}
+
+void Geometry::drawPyramid(int vertex_number, GLdouble radius, GLdouble height) {
+	//TODO: Añadir que se le pase un punto como eje central y lo dibujo con ese centro
+	PiramideTri pyramid = *new PiramideTri(vertex_number, radius, height);
+	pyramid.draw();
+}
+
+PiramideTri Geometry::createPyramid(int vertex_number, GLdouble radius, GLdouble height) {
+	return *new PiramideTri(vertex_number, radius, height);
 }

@@ -1,6 +1,5 @@
 #include "escena.h"
 #include <GL/freeglut.h>
-#include <iostream>
 
 //-------------------------------------------------------------------------
 
@@ -18,11 +17,12 @@ Escena::~Escena(){
 //-------------------------------------------------------------------------
 
 void Escena::draw(){
-	// Pruebas de drawLine {
-	PVec3 p1 = *new PVec3(0.0, 0.0, 0);
-	PVec3 p2 = *new PVec3(0.0, 2000.0, 0);
-	geometry->drawLine(p1, p2);
-	// }
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+
+	geometry->drawPyramid(3, 100.0, 150.0);
+	//geometry->drawTriangle(3, 100.0);
+
 	ejes.draw();
 }
 

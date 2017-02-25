@@ -69,11 +69,17 @@
     <ClCompile Include="escena.cpp" />
     <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="malla.cpp" />
+    <ClCompile Include="mallaTri.cpp" />
+    <ClCompile Include="piramideTri.cpp" />
     <ClCompile Include="tipos.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="escena.h" />
     <ClInclude Include="Geometry.h" />
+    <ClInclude Include="malla.h" />
+    <ClInclude Include="mallaTri.h" />
+    <ClInclude Include="piramideTri.h" />
     <ClInclude Include="tipos.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

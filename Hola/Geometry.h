@@ -6,6 +6,8 @@
 #include <GL/freeglut.h>
 #include <cmath>
 #include "tipos.h"
+#include "piramideTri.h"
+#include "mallaTri.h"
 
 class Geometry
 {
@@ -13,10 +15,15 @@ public:
 	~Geometry();
 	static bool isInitiated();
 	static Geometry* Instance();
+	// Lines
 	void drawLine(PVec3 origin, PVec3 destination, PVec3 color = *new PVec3());
 	void drawLines(int lines, PVec3 points[], PVec3 color = *new PVec3());
 	void drawLines(int lines, PVec3 points[], PVec3 colors []);
-	
+	//Triangles
+	void drawTriangle(int vertex_number, GLdouble radius);
+	MallaTri createTriangle(int vertex_number, GLdouble radius);
+	void drawPyramid(int vertex_number, GLdouble radius, GLdouble height);
+	PiramideTri createPyramid(int vertex_number, GLdouble radius, GLdouble height);
 
 private:
 	Geometry(PVec3 eje_ = *new PVec3());
