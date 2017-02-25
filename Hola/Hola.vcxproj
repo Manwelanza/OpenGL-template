@@ -70,6 +70,7 @@
     <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="malla.cpp" />
+    <ClCompile Include="mallaRect.cpp" />
     <ClCompile Include="mallaTri.cpp" />
     <ClCompile Include="piramideTri.cpp" />
     <ClCompile Include="tipos.cpp" />
@@ -78,6 +79,7 @@
     <ClInclude Include="escena.h" />
     <ClInclude Include="Geometry.h" />
     <ClInclude Include="malla.h" />
+    <ClInclude Include="mallaRect.h" />
     <ClInclude Include="mallaTri.h" />
     <ClInclude Include="piramideTri.h" />
     <ClInclude Include="tipos.h" />

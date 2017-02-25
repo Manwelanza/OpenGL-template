@@ -162,6 +162,9 @@ void key(unsigned char key, int x, int y){
   case 'o':
 	  camera.setEZ();
 	  break;
+  case 't':
+	  escena.rotarPiramide(1.0);
+	  break;
   default:
     need_redisplay = false;
     break;
@@ -185,10 +188,10 @@ void specialKey(int key, int x, int y){
     glTranslated(-1, 0, 0);
     break;
   case GLUT_KEY_UP:
-    glRotated(1, 0, 0, 1);  // girar 1 en el eje Z
+    glRotated(1.0, 0, 0, 1);  // girar 1 en el eje Z
     break;
   case GLUT_KEY_DOWN:
-    glRotated(-1, 0, 0, 1);
+    glRotated(-1.0, 0, 0, 1);
     break;
   default:
     need_redisplay = false;

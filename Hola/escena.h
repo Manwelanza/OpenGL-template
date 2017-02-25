@@ -24,6 +24,8 @@ public:
   ~Escena();
   void init();
   void draw();
+  void drawDiabolo();
+  void rotarPiramide(GLdouble angulo);
 public:
   Ejes ejes;
   Geometry* geometry;

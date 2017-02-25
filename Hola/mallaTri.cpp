@@ -7,7 +7,7 @@ MallaTri::MallaTri()
 
 MallaTri::MallaTri(int vertex_number, GLdouble radius) {
 	numDat = vertex_number;
-	double angle = 0;
+	double angle = PI / 2;
 	//Como avanza el calculo de puntos en el circulo (2 pi radianes / el numero de puntos que quieras en el circulo)
 	double angle_step = 2 * PI / (double)vertex_number; 
 	//Inicializa los vertices

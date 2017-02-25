@@ -8,7 +8,7 @@ PiramideTri::PiramideTri()
 PiramideTri::PiramideTri(int vertex_number, GLdouble radius, GLdouble height) {
 	numDat = vertex_number * 3;
 
-	GLdouble angle = 0;
+	GLdouble angle = PI/2;
 	//Como avanza el calculo de puntos en el circulo (2 pi radianes / el numero de puntos que quieras en el circulo)
 	GLdouble angle_step = 2 * PI / (GLdouble)vertex_number;
 	vertices = new PVec3[vertex_number * 3];
@@ -56,4 +56,9 @@ void PiramideTri::draw() {
 	glColor4d(1, 0.5, 0.5, 0.5);
 	glDrawArrays(GL_TRIANGLES, 0, numDat);
 	desactivar();
+}
+
+bool PiramideTri::load(char arch[]) {
+	//TODO: Implementar esta función
+	return true;
 }
