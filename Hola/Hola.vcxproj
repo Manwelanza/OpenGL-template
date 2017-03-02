@@ -74,6 +74,7 @@
     <ClCompile Include="mallaTri.cpp" />
     <ClCompile Include="piramideTri.cpp" />
     <ClCompile Include="PixMap24RGB.cpp" />
+    <ClCompile Include="textura.cpp" />
     <ClCompile Include="tipos.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -84,7 +85,15 @@
     <ClInclude Include="mallaTri.h" />
     <ClInclude Include="piramideTri.h" />
     <ClInclude Include="PixMap24RGB.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="textura.h" />
     <ClInclude Include="tipos.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Hola.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="ray.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

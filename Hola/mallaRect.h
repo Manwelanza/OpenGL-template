@@ -11,7 +11,6 @@ class MallaRect :
 	public Malla
 {
 public:
-	MallaRect();
 	MallaRect(GLdouble width, GLdouble height, Color4 color_ = Color4());
 	virtual ~MallaRect();
 	void draw();

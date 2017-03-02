@@ -1,16 +1,17 @@
 #include "mallaRect.h"
 
 
-MallaRect::MallaRect()
-{
-}
-
 MallaRect::MallaRect(GLdouble width, GLdouble height, Color4 color_)
 {
 	numDat = 4;
 	normales = new PVec3[1];
 	normales[0] = PVec3(0.0, 0.0, 1.0);
 	vertices = new PVec3[4];
+	coordText = new CTex2[4];
+	coordText[0] = CTex2(0, 0);
+	coordText[1] = CTex2(0, 1);
+	coordText[2] = CTex2(1, 0);
+	coordText[3] = CTex2(1, 1);
 	color = color_;
 	createPoints(width, height);
 }
@@ -37,11 +38,11 @@ void MallaRect::draw() {
 void MallaRect::activar() {
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glVertexPointer(3, GL_DOUBLE, 0, vertices);
-	glEnableClientState(GL_COLOR_ARRAY);
+	//glEnableClientState(GL_COLOR_ARRAY);
 }
 
 void MallaRect::desactivar() {
-	glDisableClientState(GL_COLOR_ARRAY);
+	//glDisableClientState(GL_COLOR_ARRAY);
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
 

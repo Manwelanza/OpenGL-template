@@ -3,12 +3,13 @@
 
 Malla::Malla()
 {
+	
 }
 
 
 Malla::~Malla()
 {
-	if (vertices) {
+	if (vertices != NULL) {
 		delete[] vertices;
 		vertices = NULL;
 	}
@@ -16,6 +17,11 @@ Malla::~Malla()
 	if (normales) {
 		delete[] normales;
 		normales = NULL;
+	}
+
+	if (coordText) {
+		delete[] coordText;
+		coordText = NULL;
 	}
 }
 

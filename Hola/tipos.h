@@ -7,6 +7,8 @@
 #include <iostream>
 //-------------------------------------------------------------------------
 
+#define uint unsigned int
+
 /**
  * Clase que representa un vector o punto en el espacio tridimensional
 */

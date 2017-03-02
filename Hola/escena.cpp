@@ -5,6 +5,8 @@
 
 void Escena::init(){
   // texturas
+	textura.init();
+	textura.load("ray.bmp");
   // luces
 }
 
@@ -29,8 +31,10 @@ void Escena::draw(){
 	glRotated(diaboloZRotation, 0, 0, 1);
 		drawDiabolo();
 	glRotated(-diaboloZRotation, 0, 0, 1);
-
-	geometry->drawRect(100, 100);
+	
+	glEnable(GL_TEXTURE_2D);
+	rectangulo.draw();
+	glDisable(GL_TEXTURE_2D);
 
 	ejes.draw();
 }
@@ -39,8 +43,8 @@ void Escena::draw(){
 
 void Escena::drawDiabolo() {
 	GLdouble altura = 100.0;
-	GLdouble radio = 50.0;
-	int vertex_number = 3;
+	GLdouble radio = 100.0;
+	int vertex_number = 11;
 	GLdouble pyramid_degree_offset = 180.0 / (GLdouble) vertex_number;
 	PiramideTri pyramid = geometry->createPyramid(vertex_number, radio, altura);
 

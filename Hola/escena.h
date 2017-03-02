@@ -4,6 +4,7 @@
 
 #include "tipos.h"
 #include "Geometry.h"
+#include "textura.h"
 
 //-------------------------------------------------------------------------
 class Ejes {
@@ -20,7 +21,10 @@ public:
 
 class Escena {
 public:
-	Escena() : ejes(200) { geometry = Geometry::Instance(); };
+	Escena() : ejes(200), textura(Textura()), rectangulo(geometry->createRect(50, 50)) 
+{
+		geometry = Geometry::Instance(); 
+};
   ~Escena();
   void init();
   void draw();
@@ -29,6 +33,8 @@ public:
 public:
   Ejes ejes;
   Geometry* geometry;
+  Textura textura;
+  MallaRect rectangulo;
 };
 
 //-------------------------------------------------------------------------
