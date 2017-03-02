@@ -12,6 +12,10 @@ void Escena::init(){
 
 Escena::~Escena(){
    // liberar memoria y recursos 
+	if (geometry) {
+		delete geometry;
+		geometry = NULL;
+	}
 }
 
 //-------------------------------------------------------------------------
@@ -22,13 +26,11 @@ void Escena::draw(){
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 
-	//geometry->drawPyramid(3, 100.0, 150.0);
-	//geometry->drawTriangle(3, 100.0);
-
 	glRotated(diaboloZRotation, 0, 0, 1);
 		drawDiabolo();
 	glRotated(-diaboloZRotation, 0, 0, 1);
-	//geometry->drawRect(50.0, 50.0);
+
+	geometry->drawRect(100, 100);
 
 	ejes.draw();
 }
@@ -36,8 +38,6 @@ void Escena::draw(){
 
 
 void Escena::drawDiabolo() {
-	//TODO: Creo que esto esta mal, se ven muy raras las piramides
-	
 	GLdouble altura = 100.0;
 	GLdouble radio = 50.0;
 	int vertex_number = 3;

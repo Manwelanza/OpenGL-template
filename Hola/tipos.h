@@ -137,6 +137,8 @@ public:
 		return v*v.dot(*this)*(1 - cos(angle)) + (*this)*cos(angle) + (*this).cross(v)*sin(angle);
 	}
 
+private:
+	friend std::ostream& operator<<(std::ostream &strm, const PVec3 &pVec3) { return strm << "PVec3(" << pVec3.x << ", " << pVec3.y << ", " << pVec3.z << ")"; }
 
 public:
 	GLdouble x, y, z;
@@ -146,6 +148,7 @@ public:
 * Clase que representa coordenadas en una textura bidimensional
 */
 class CTex2 {
+public:
 	//constructor y destructor
 	CTex2(GLdouble ss = 0.0, GLdouble tt = 0.0) : s(ss), t(tt) {};
 	~CTex2() {};
@@ -157,8 +160,9 @@ public:
 * Clase que representa un color en el espacio RGBA
 */
 class Color4 {
+public:
 	//constructor y destructor
-	Color4(GLdouble rr = 0.0, GLdouble gg = 0.0, GLdouble bb = 0.0, GLdouble aa = 0.0) : r(rr), g(gg), b(bb), a(aa) {};
+	Color4(GLdouble rr = 0.0, GLdouble gg = 0.0, GLdouble bb = 0.0, GLdouble aa = 1.0) : r(rr), g(gg), b(bb), a(aa) {};
 	~Color4() {};
 public:
 	GLdouble r, g, b, a;

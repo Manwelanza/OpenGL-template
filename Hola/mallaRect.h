@@ -12,19 +12,19 @@ class MallaRect :
 {
 public:
 	MallaRect();
-	MallaRect(GLdouble width, GLdouble height, PVec3 color = PVec3());
-	MallaRect(GLdouble width, GLdouble height, PVec3 colores [4]);
+	MallaRect(GLdouble width, GLdouble height, Color4 color_ = Color4());
 	virtual ~MallaRect();
 	void draw();
 	bool load(char arch[]);
+	void set(GLdouble width, GLdouble height);
 
 protected:
-	void init(GLdouble width, GLdouble height, PVec3 colores[4]);
+	void createPoints(GLdouble width, GLdouble height);
 	void activar();
 	void desactivar();
 
 protected:
-	PVec3 *colores;
+	Color4 color;
 };
 
 #endif //_H_mallaRect_H_

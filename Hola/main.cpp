@@ -119,6 +119,8 @@ void display(){
   glMatrixMode(GL_MODELVIEW);
   glPushMatrix();
 
+  //glPolygonMode(GL_FRONT_AND_BACK, GL_LINES); //Para que se vea solo las lineas supuestamente
+  // Mirar como funciona el comando anterior, porque no funciona en ningun sitio
   escena.draw();
 
   glPopMatrix();

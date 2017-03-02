@@ -26,10 +26,8 @@ public:
 	void drawPyramid(int vertex_number, GLdouble radius, GLdouble height);
 	PiramideTri createPyramid(int vertex_number, GLdouble radius, GLdouble height);
 	//Rectangles
-	void drawRect(GLdouble width, GLdouble height, PVec3 color = PVec3());
-	void drawRect(GLdouble width, GLdouble height, PVec3 colores[4]);
-	MallaRect createRect(GLdouble width, GLdouble height, PVec3 color = PVec3());
-	MallaRect createRect(GLdouble width, GLdouble height, PVec3 colores [4]);
+	void drawRect(GLdouble width, GLdouble height, Color4 color = Color4());
+	MallaRect createRect(GLdouble width, GLdouble height, Color4 color = Color4());
 
 private:
 	Geometry(PVec3 eje_ = *new PVec3());

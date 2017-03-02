@@ -37,10 +37,7 @@ PiramideTri::PiramideTri(int vertex_number, GLdouble radius, GLdouble height) {
 		GLdouble nz = atan(height / radius) / PI;
 
 		//TODO: Calcular normales como es debido
-
-		normales[i] = PVec3(
-			0, 0, 1
-			);
+		normales[i] = PVec3(0, 0, 1);
 
 		angle += angle_step;
 	}

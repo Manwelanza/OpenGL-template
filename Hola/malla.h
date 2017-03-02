@@ -23,6 +23,7 @@ protected:
 	PVec3 *vertices;
 	PVec3 *normales;
 	GLuint numDat;
+	CTex2 coordText;
 };
 
 #endif //_H_malla_H_

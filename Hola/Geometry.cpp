@@ -85,29 +85,12 @@ PiramideTri Geometry::createPyramid(int vertex_number, GLdouble radius, GLdouble
 
 // Rectangles
 
-void Geometry::drawRect(GLdouble width, GLdouble height, PVec3 color) {
-	PVec3 *aux = new PVec3[4];
-	aux[0] = color;
-	aux[1] = color;
-	aux[2] = color;
-	aux[3] = color;
-	drawRect(width, height, aux);
-}
-
-void Geometry::drawRect(GLdouble width, GLdouble height, PVec3 colores[4]) {
-	MallaRect rect = MallaRect(width, height, colores);
+void Geometry::drawRect(GLdouble width, GLdouble height, Color4 color) {
+	MallaRect rect = MallaRect(width, height, color);
 	rect.draw();
 }
 
-MallaRect Geometry::createRect(GLdouble width, GLdouble height, PVec3 color) {
-	PVec3 *aux = new PVec3[4];
-	aux[0] = color;
-	aux[1] = color;
-	aux[2] = color;
-	aux[3] = color;
-	return createRect(width, height, aux);
-}
 
-MallaRect Geometry::createRect(GLdouble width, GLdouble height, PVec3 colores [4]) {
-	return MallaRect(width, height, colores);
+MallaRect Geometry::createRect(GLdouble width, GLdouble height, Color4 color) {
+	return MallaRect(width, height, color);
 }
