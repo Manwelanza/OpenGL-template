@@ -165,6 +165,9 @@ void key(unsigned char key, int x, int y){
   case 't':
 	  escena.rotarPiramide(1.0);
 	  break;
+  case 'T':
+	  escena.rotarPiramide(-1.0);
+	  break;
   default:
     need_redisplay = false;
     break;

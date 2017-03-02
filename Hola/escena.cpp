@@ -16,49 +16,64 @@ Escena::~Escena(){
 
 //-------------------------------------------------------------------------
 
+GLdouble diaboloZRotation = 0;
+
 void Escena::draw(){
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 
 	//geometry->drawPyramid(3, 100.0, 150.0);
 	//geometry->drawTriangle(3, 100.0);
-	//drawDiabolo();
-	geometry->drawRect(50.0, 50.0);
+
+	glRotated(diaboloZRotation, 0, 0, 1);
+		drawDiabolo();
+	glRotated(-diaboloZRotation, 0, 0, 1);
+	//geometry->drawRect(50.0, 50.0);
 
 	ejes.draw();
 }
 
+
+
 void Escena::drawDiabolo() {
 	//TODO: Creo que esto esta mal, se ven muy raras las piramides
 	
-	GLdouble altura = 50.0;
-	GLdouble angulo1 = 180.0;
-	GLdouble angulo2 = 45;
-	PiramideTri pyramid = geometry->createPyramid(3, altura, altura);
-	// Dibujamos las dos primeras piramides de "abajo"
+	GLdouble altura = 100.0;
+	GLdouble radio = 50.0;
+	int vertex_number = 3;
+	GLdouble pyramid_degree_offset = 180.0 / (GLdouble) vertex_number;
+	PiramideTri pyramid = geometry->createPyramid(vertex_number, radio, altura);
+
+	//subo los ejes en la 'y'
+	glTranslated(0, altura, 0);
+		//giramos en 'x' para que el pico quede hacia abajo
+		glRotated(90, 1, 0, 0);
+			//dibujamos primera pirámide
+			pyramid.draw();
+			//giramos en 'z' para que cuadren las pirámides
+			glRotated(pyramid_degree_offset, 0, 0, 1);
+				pyramid.draw();
+			glRotated(-pyramid_degree_offset, 0, 0, 1);
+		glRotated(-90, 1, 0, 0);
 	glTranslated(0, -altura, 0);
-	pyramid.draw();
-	glRotated(angulo2, 0, 1, 0); // Rotamos la segunda piramide
-	pyramid.draw();
-	glRotated(-angulo2, 0, 1, 0); // volvemos a la normalidad el angulo
-	// Ahora dibujamos de nuevo las dos piramides de "arriba"
-	glTranslated(0, altura * 2, 0);
-	glRotated(-angulo1, 1, 0, 0);
-	pyramid.draw();
-	glRotated(angulo2, 0, 1, 0); // Rotamos la segunda piramide
-	pyramid.draw();
-	glRotated(-angulo2, 0, 1, 0); //volvemos a la normalidad el angulo
-	//Volvemos a los estados iniciales
-	glRotated(angulo1, 1, 0, 0);
-	glTranslated(0, -altura, 0); 
+	//bajo los ejes en la 'y'
+		glTranslated(0, -altura, 0);
+		//giramos en 'x' para que el pico quede hacia arriba
+		glRotated(-90, 1, 0, 0);
+			//dibujamos primera pirámide
+			pyramid.draw();
+			//giramos en 'z' para que cuadren las pirámides
+			glRotated(pyramid_degree_offset, 0, 0, 1);
+				pyramid.draw();
+			glRotated(-pyramid_degree_offset, 0, 0, 1);
+		glRotated(90, 1, 0, 0);
+	glTranslated(0, altura, 0);
+	
 }
 
 void Escena::rotarPiramide(GLdouble angulo) {
 	//TODO: Tiene que rotar solo las piramides, no toda la escena (es decir, los ejes deben quedarse como estan)
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-	glRotated(angulo, 0, 0, 1);
-	glPopMatrix();
+	diaboloZRotation += angulo;
 }
 
 //-------------------------------------------------------------------------
