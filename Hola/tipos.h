@@ -7,6 +7,9 @@
 #include <iostream>
 //-------------------------------------------------------------------------
 
+/**
+ * Clase que representa un vector o punto en el espacio tridimensional
+*/
 class PVec3 {
 public:
 	//constructor y destructor
@@ -137,6 +140,28 @@ public:
 
 public:
 	GLdouble x, y, z;
+};
+
+/**
+* Clase que representa coordenadas en una textura bidimensional
+*/
+class CTex2 {
+	//constructor y destructor
+	CTex2(GLdouble ss = 0.0, GLdouble tt = 0.0) : s(ss), t(tt) {};
+	~CTex2() {};
+public:
+	GLdouble s, t;
+};
+
+/**
+* Clase que representa un color en el espacio RGBA
+*/
+class Color4 {
+	//constructor y destructor
+	Color4(GLdouble rr = 0.0, GLdouble gg = 0.0, GLdouble bb = 0.0, GLdouble aa = 0.0) : r(rr), g(gg), b(bb), a(aa) {};
+	~Color4() {};
+public:
+	GLdouble r, g, b, a;
 };
 
 //-------------------------------------------------------------------------
