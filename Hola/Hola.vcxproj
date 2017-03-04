@@ -72,10 +72,12 @@
     <ClCompile Include="malla.cpp" />
     <ClCompile Include="mallaRect.cpp" />
     <ClCompile Include="mallaTri.cpp" />
+    <ClCompile Include="object.cpp" />
     <ClCompile Include="piramideTri.cpp" />
     <ClCompile Include="PixMap24RGB.cpp" />
     <ClCompile Include="textura.cpp" />
     <ClCompile Include="tipos.cpp" />
+    <ClCompile Include="triAnimado.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="escena.h" />
@@ -83,11 +85,13 @@
     <ClInclude Include="malla.h" />
     <ClInclude Include="mallaRect.h" />
     <ClInclude Include="mallaTri.h" />
+    <ClInclude Include="object.h" />
     <ClInclude Include="piramideTri.h" />
     <ClInclude Include="PixMap24RGB.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="textura.h" />
     <ClInclude Include="tipos.h" />
+    <ClInclude Include="triAnimado.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Hola.rc" />

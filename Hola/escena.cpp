@@ -10,6 +10,7 @@ void Escena::init(){
 	textura.load("ray.bmp");
 	//glDisable(GL_TEXTURE_2D);
 	rectangulo.setTexture(&textura);
+
   // luces
 }
 
@@ -32,7 +33,7 @@ void Escena::draw(){
 	glPushMatrix();
 
 	//glEnable(GL_TEXTURE_2D);
-		rectangulo.draw();
+	rect.draw();
 	//glDisable(GL_TEXTURE_2D);
 
 	glRotated(diaboloZRotation, 0, 0, 1);
@@ -79,7 +80,6 @@ void Escena::drawDiabolo() {
 }
 
 void Escena::rotarPiramide(GLdouble angulo) {
-	//TODO: Tiene que rotar solo las piramides, no toda la escena (es decir, los ejes deben quedarse como estan)
 	diaboloZRotation += angulo;
 }
 

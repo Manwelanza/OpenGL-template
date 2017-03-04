@@ -1,4 +1,4 @@
-#pragma once
+//#pragma once
 
 #ifndef _H_textura_H_
 #define _H_textura_H_

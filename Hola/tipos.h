@@ -8,6 +8,7 @@
 //-------------------------------------------------------------------------
 
 #define uint unsigned int
+#define PI 3.14159265359
 
 /**
  * Clase que representa un vector o punto en el espacio tridimensional

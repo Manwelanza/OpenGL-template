@@ -6,14 +6,12 @@
 #include "tipos.h"
 #include <GL/freeglut.h>
 
-#define PI 3.14159265359
-
 class Malla
 {
 public:
 	Malla();
 	virtual ~Malla();
-	virtual void draw() = 0;
+	virtual void draw(){};
 	
 protected:
 	virtual void activar();
