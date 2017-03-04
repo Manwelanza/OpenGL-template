@@ -5,8 +5,11 @@
 
 void Escena::init(){
   // texturas
+	glEnable(GL_TEXTURE_2D);
 	textura.init();
 	textura.load("ray.bmp");
+	//glDisable(GL_TEXTURE_2D);
+	rectangulo.setTexture(&textura);
   // luces
 }
 
@@ -28,13 +31,13 @@ void Escena::draw(){
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 
+	//glEnable(GL_TEXTURE_2D);
+		rectangulo.draw();
+	//glDisable(GL_TEXTURE_2D);
+
 	glRotated(diaboloZRotation, 0, 0, 1);
 		drawDiabolo();
 	glRotated(-diaboloZRotation, 0, 0, 1);
-	
-	glEnable(GL_TEXTURE_2D);
-	rectangulo.draw();
-	glDisable(GL_TEXTURE_2D);
 
 	ejes.draw();
 }

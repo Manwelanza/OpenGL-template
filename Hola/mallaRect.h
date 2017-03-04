@@ -5,6 +5,7 @@
 
 #include "malla.h"
 #include "tipos.h"
+#include "textura.h"
 #include <GL/freeglut.h>
 
 class MallaRect :
@@ -15,7 +16,8 @@ public:
 	virtual ~MallaRect();
 	void draw();
 	bool load(char arch[]);
-	void set(GLdouble width, GLdouble height);
+	void setSize(GLdouble width, GLdouble height);
+	void setTexture(Textura *texture_);
 
 protected:
 	void createPoints(GLdouble width, GLdouble height);
@@ -24,6 +26,7 @@ protected:
 
 protected:
 	Color4 color;
+	Textura *textura;
 };
 
 #endif //_H_mallaRect_H_

@@ -5,8 +5,18 @@
 bool Textura::load(const std::string & BMP_Name) {
 	// la textura debe estar inicializada -> escena::init()
 	PixMap24RGB pixMap;
-	pixMap.load_bmpBGR(BMP_Name); // cargar
-	// carga correcta??
+	try {
+		pixMap.load_bmpBGR(BMP_Name); // cargar
+	}
+	catch (const std::ios_base::failure e) {
+		std::cerr << "Fallo en el catch 1: " << e.what() << std::endl;
+	}
+	catch (const std::bad_alloc e) {
+		std::cerr << "Fallo de memoria: " << e.what() << std::endl;
+	}
+	catch (...) {
+		std::cerr << "Excepción general" << std::endl;
+	}
 	w = pixMap.width();
 	h = pixMap.height();
 	glBindTexture(GL_TEXTURE_2D, id); // transferir a openGL
