@@ -1,0 +1,26 @@
+Texturas:	
+	-función de RxR a colores, basada en una imagen habitualmente
+		-por tanto puede ser generada procedimentalmente en forma de función.
+		-se asume que las coordenadas de la imagen van de 0 a 1, por tanto se hace módulo 1 y se mira en la imagen, efectivamente haciendo un mosaico
+	-todos los comandos tiene efecto sobre la textura activa, cuidadín
+		-para desactivar la textura actual, desactivamos la 0
+	-para pegar una textura a un objeto geométrico, asociamos a cada vértice las coordenadas de textura
+		
+		
+	-Para asignar texturas:
+		V0 V1 V2 V3		V0 +----+ V2
+		C0 C1 C2 C3		   |    | 
+						V1 +----+ V3
+						
+	--En triángulos se especifican los 3 puntos de la textura que definen el cacho que se dibuja en el triángulo.
+	
+Deteción de que pinchamos dentro de un triángulo:
+	Mirar que los 4 triángulos que se forman (con los 3ángulos del triángulo + donde pinchamos) sigan la misma orientación.
+	Hay que asegurarse de que los 4 puntos están en el mismo sistema de coordenadas.
+		-Para ello:
+			Transformar el punto donde pinchamos a coordenadas de viewport
+			Que básicamente se reduce a mover el sistema de coords del ratón (arriba a la izda de la ventana) al sitema de coords centrado en el medio)
+			
+	Hay que modificar los vértices par detectar bien el click (Si lo hacemos con transformaciones, siempre miraríamos la detección de click con el origen).
+	Guardar rotación + desplazamiento y queda hecho
+		

@@ -19,13 +19,23 @@ bool Textura::load(const std::string & BMP_Name) {
 	}
 	w = pixMap.width();
 	h = pixMap.height();
-	glBindTexture(GL_TEXTURE_2D, id); // transferir a openGL
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0, GL_RGB,
-		GL_UNSIGNED_BYTE, pixMap.map());
+	//activamos la textura a la cual transferir la imagen
+	glBindTexture(GL_TEXTURE_2D, id); 
+	//transferimos la imagen a opengl
+	glTexImage2D(GL_TEXTURE_2D, 
+		0,					//mipmap level
+		GL_RGB,				//
+		w,					//width
+		h,					//height
+		0,					//borde: a cero porque no hay
+		GL_RGB,				//
+		GL_UNSIGNED_BYTE,	//tipo de datos
+		pixMap.map());		//puntero a los datos
 	
 	return true;
 	//TODO
 }
+
 
 
 void Textura::save(const std::string & BMP_Name) {

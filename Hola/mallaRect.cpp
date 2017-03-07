@@ -48,9 +48,12 @@ void MallaRect::draw() {
 void MallaRect::activar() {
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glVertexPointer(3, GL_DOUBLE, 0, vertices);
+	
 	if (textura) {
+		
 		textura->activar();
-		//glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+		glTexCoordPointer(2, GL_DOUBLE, 0, coordText);
 	}
 }
 
@@ -58,7 +61,7 @@ void MallaRect::desactivar() {
 	glDisableClientState(GL_VERTEX_ARRAY);
 	if (textura) {
 		textura->desactivar();
-		//glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	}
 	
 }

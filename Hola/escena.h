@@ -22,7 +22,7 @@ public:
 
 class Escena {
 public:
-	Escena() : ejes(200), textura(Textura()), rect (Object()), rectangulo(geometry->createRect(50, 50)) 
+	Escena() : ejes(200), textura(Textura()), rect (Object()), rectangulo(geometry->createRect(500, 500)) 
 {
 		geometry = Geometry::Instance(); 
 		rect.malla = &rectangulo;

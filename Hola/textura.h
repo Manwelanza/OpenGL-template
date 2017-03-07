@@ -12,8 +12,12 @@ public:
 	Textura() : w(0), h(0), id(0) {};
 	~Textura() { glDeleteTextures(1, &id); };
 	void init() {
+		//pedimos hueco para una textura (podríamos pedir más)
+		//hasta que no tenemos el identificador, lo que hagamos no tiene efecto
 		glGenTextures(1, &id);
 		activar(); 
+		//obligatoriamente establecer uno de los filtros
+		//en este caso, media lineal de los colores de alrededor
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	};
 	void activar() { 
