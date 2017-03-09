@@ -23,7 +23,7 @@ PuertoVista viewPort(0, 0, winWidth, winHeight);
 Camara camera(winWidth, winHeight);
 
 // Scene variables
-Escena escena;
+Escena escena(winWidth, winHeight);
 
 //----------- Callbacks ----------------------------------------------------
 
@@ -140,6 +140,9 @@ void resize(int newWidth, int newHeight){
 
   // Resize Scene Visible Area 
   camera.setVV(winWidth, winHeight);
+
+  // Resize escena
+  escena.resize(newWidth, newHeight);
 }
 
 //-------------------------------------------------------------------------

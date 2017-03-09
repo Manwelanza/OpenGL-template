@@ -3,14 +3,29 @@
 
 //-------------------------------------------------------------------------
 
+Escena::Escena(int width, int height) :
+ejes(200),
+textura(Textura()),
+rect(Object()),
+tri(Object()),
+geometry(Geometry::Instance()),
+triangulo(geometry->createTriangle(3, 60)),
+rectangulo(geometry->createRect(width, height))
+{
+	rect.malla = &rectangulo;
+	tri.malla = &triangulo;
+}
+
+//-------------------------------------------------------------------------
+
 void Escena::init(){
   // texturas
 	glEnable(GL_TEXTURE_2D);
 	textura.init();
 	textura.load("ray.bmp");
-	//glDisable(GL_TEXTURE_2D);
 	rectangulo.setTexture(&textura);
-
+	triangulo.setTexture(&textura);
+	glDisable(GL_TEXTURE_2D);
   // luces
 }
 
@@ -32,13 +47,16 @@ void Escena::draw(){
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 
-	//glEnable(GL_TEXTURE_2D);
-	rect.draw();
-	//glDisable(GL_TEXTURE_2D);
+	
 
-	glRotated(diaboloZRotation, 0, 0, 1);
+	glEnable(GL_TEXTURE_2D);
+	tri.draw();
+	rect.draw();
+	glDisable(GL_TEXTURE_2D);
+
+	/*glRotated(diaboloZRotation, 0, 0, 1);
 		drawDiabolo();
-	glRotated(-diaboloZRotation, 0, 0, 1);
+	glRotated(-diaboloZRotation, 0, 0, 1);*/
 
 	ejes.draw();
 }
@@ -81,6 +99,12 @@ void Escena::drawDiabolo() {
 
 void Escena::rotarPiramide(GLdouble angulo) {
 	diaboloZRotation += angulo;
+}
+
+void Escena::resize(int width, int height) {
+	// Cambiamos el tamaño del fondo y lo centramos
+	rect.resize(width, height);
+	rect.posicion = PVec3(-width / 2, -height / 2, 0);
 }
 
 //-------------------------------------------------------------------------

@@ -24,6 +24,13 @@ MallaTri::MallaTri(int vertex_number, GLdouble radius) {
 	normales = new PVec3[vertex_number];
 	for (int i = 0; i < vertex_number; i++)
 		normales[i] = PVec3(0, 0, 1);
+
+	//Inicializa las coordenadas de textura
+	//TODO: Esto petará si vertex_number no vale 3
+	coordText = new CTex2[vertex_number];
+	coordText[0] = CTex2(0.5, 1);
+	coordText[1] = CTex2(0, 0);
+	coordText[2] = CTex2(1, 0);
 }
 
 MallaTri::~MallaTri()
@@ -32,12 +39,33 @@ MallaTri::~MallaTri()
 
 void MallaTri::draw() {
 	activar();
+	activarTextura();
 	glColor4d(0.5, 0.5, 0.5, 0.5);
 	glDrawArrays(GL_TRIANGLES, 0, numDat);
 	desactivar();
+	desactivarTextura();
+}
+
+void MallaTri::setTexture(Textura *textura_) {
+	textura = textura_;
 }
 
 bool MallaTri::load(char arch[]){
 	//TODO: Implementar esta función
 	return true;
+}
+
+void MallaTri::activarTextura() {
+	if (textura) {
+		textura->activar();
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+		glTexCoordPointer(2, GL_DOUBLE, 0, coordText);
+	}
+}
+
+void MallaTri::desactivarTextura() {
+	if (textura) {
+		textura->desactivar();
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	}
 }

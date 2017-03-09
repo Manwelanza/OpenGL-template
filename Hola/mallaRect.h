@@ -18,6 +18,7 @@ public:
 	bool load(char arch[]);
 	void setSize(GLdouble width, GLdouble height);
 	void setTexture(Textura *texture_);
+	void resize(int width, int height);
 
 protected:
 	void createPoints(GLdouble width, GLdouble height);
@@ -26,7 +27,6 @@ protected:
 
 protected:
 	Color4 color;
-	Textura *textura;
 };
 
 #endif //_H_mallaRect_H_

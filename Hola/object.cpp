@@ -9,7 +9,7 @@ Object::Object()
 	rotaciones[1] = 0;
 	rotaciones[2] = 0;
 	malla = NULL;
-	textura = NULL;
+	//textura = NULL;
 	activo = true;
 }
 
@@ -23,9 +23,9 @@ Object::~Object()
 }
 
 void Object::init(){
-	if (textura) {
+	/*if (textura) {
 		textura->init();
-	}
+	}*/
 }
 
 void Object::draw() {
@@ -42,4 +42,8 @@ void Object::draw() {
 		glRotated(-rotaciones[1], 0, 1, 0);
 		glRotated(-rotaciones[2], 0, 0, 1);
 	}
+}
+
+void Object::resize(int width, int height) {
+	malla->resize(width, height);
 }

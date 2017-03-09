@@ -17,12 +17,13 @@ public:
 
 	virtual void init();
 	virtual void draw();
+	virtual void resize (int width, int height);
 
 public:
 	PVec3 posicion;
 	GLdouble *rotaciones;
 	Malla *malla;
-	Textura *textura;
+	//Textura *textura;
 	bool activo;
 };
 

@@ -23,6 +23,12 @@ Malla::~Malla()
 		delete[] coordText;
 		coordText = NULL;
 	}
+
+	if (textura) {
+		// TODO: Arreglar esto, si lo intentas borrar peta
+		//delete textura;
+		textura = NULL;
+	}
 }
 
 void Malla::activar() {

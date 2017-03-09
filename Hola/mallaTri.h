@@ -15,7 +15,12 @@ public:
 	MallaTri(int vertex_number, GLdouble radius);
 	virtual ~MallaTri();
 	void draw();
+	void setTexture(Textura *textura_);
 	bool load(char arch[]);
+
+protected:
+	void activarTextura();
+	void desactivarTextura();
 };
 
 #endif //_H_mallaTri_H_

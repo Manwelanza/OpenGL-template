@@ -22,22 +22,24 @@ public:
 
 class Escena {
 public:
-	Escena() : ejes(200), textura(Textura()), rect (Object()), rectangulo(geometry->createRect(500, 500)) 
-{
-		geometry = Geometry::Instance(); 
-		rect.malla = &rectangulo;
-};
-  ~Escena();
-  void init();
-  void draw();
-  void drawDiabolo();
-  void rotarPiramide(GLdouble angulo);
+	Escena(int width = 100, int height = 100);
+	~Escena();
+	void init();
+	void draw();
+	void drawDiabolo();
+	void rotarPiramide(GLdouble angulo);
+	void resize(int width, int height);
+
 public:
   Ejes ejes;
   Geometry* geometry;
   Textura textura;
+  
   MallaRect rectangulo;
   Object rect;
+
+  MallaTri triangulo;
+  Object tri;
 };
 
 //-------------------------------------------------------------------------

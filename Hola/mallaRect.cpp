@@ -10,9 +10,9 @@ MallaRect::MallaRect(GLdouble width, GLdouble height, Color4 color_)
 	vertices = new PVec3[4];
 	coordText = new CTex2[4];
 	coordText[0] = CTex2(0, 0);
-	coordText[1] = CTex2(1, 0);
-	coordText[2] = CTex2(1, 1);
-	coordText[3] = CTex2(0, 1);
+	coordText[1] = CTex2(0, 1);
+	coordText[2] = CTex2(1, 0);
+	coordText[3] = CTex2(1, 1);
 	color = color_;
 	createPoints(width, height);
 }
@@ -26,11 +26,6 @@ void MallaRect::createPoints(GLdouble width, GLdouble height) {
 
 MallaRect::~MallaRect()
 {
-	if (textura) {
-		// TODO: Arreglar esto, si lo intentas borrar peta
-		//delete textura;
-		textura = NULL;
-	}
 }
 
 void MallaRect::draw() {
@@ -38,19 +33,17 @@ void MallaRect::draw() {
 	glNormal3d(normales[0].x, normales[0].y, normales[0].z);
 	glColor4d(color.r, color.g, color.b, color.a);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, numDat);
-	//TODO: Poner de alguna forma las coordenadas de textura
-	for (int i = 0; i < 4; i++) {
-		//glTexCoord2d(coordText[i].s, coordText[i].t);
-	}
 	desactivar();
+}
+
+void MallaRect::resize(int width, int height) {
+	setSize(width, height);
 }
 
 void MallaRect::activar() {
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glVertexPointer(3, GL_DOUBLE, 0, vertices);
-	
 	if (textura) {
-		
 		textura->activar();
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 		glTexCoordPointer(2, GL_DOUBLE, 0, coordText);
