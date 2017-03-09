@@ -9,6 +9,7 @@
 #include "piramideTri.h"
 #include "mallaTri.h"
 #include "mallaRect.h"
+#include "diabolo.h"
 
 class Geometry
 {
@@ -28,6 +29,9 @@ public:
 	//Rectangles
 	void drawRect(GLdouble width, GLdouble height, Color4 color = Color4());
 	MallaRect createRect(GLdouble width, GLdouble height, Color4 color = Color4());
+	//Diabolo
+	void drawDiabolo(int vertex_number, GLdouble radius, GLdouble height);
+	Diabolo createDiabolo(int vertex_number, GLdouble radius, GLdouble height);
 
 private:
 	Geometry(PVec3 eje_ = *new PVec3());

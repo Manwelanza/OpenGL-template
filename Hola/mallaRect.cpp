@@ -68,6 +68,3 @@ void MallaRect::setSize(GLdouble width, GLdouble height) {
 	createPoints(width, height);
 }
 
-void MallaRect::setTexture(Textura *textura_) {
-	textura = textura_;
-}

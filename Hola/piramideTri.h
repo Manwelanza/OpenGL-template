@@ -16,6 +16,12 @@ public:
 	virtual ~PiramideTri();
 	void draw();
 	bool load(char arch[]);
+	int getNumDat();
+	GLdouble getHeight();
+	GLdouble getRadio();
+protected:
+	GLdouble radio;
+	GLdouble height;
 
 };
 

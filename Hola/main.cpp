@@ -167,11 +167,23 @@ void key(unsigned char key, int x, int y){
   case 'o':
 	  camera.setEZ();
 	  break;
-  case 't':
-	  escena.rotarPiramide(1.0);
+  case 'x':
+	  escena.rotation(PVec3(1.0, 0, 0));
 	  break;
-  case 'T':
-	  escena.rotarPiramide(-1.0);
+  case 'X':
+	  escena.rotation(PVec3(-1.0, 0, 0));
+	  break;
+  case 'y':
+	  escena.rotation(PVec3(0, 1.0, 0));
+	  break;
+  case 'Y':
+	  escena.rotation(PVec3(0, -1.0, 0));
+	  break;
+  case 'z':
+	  escena.rotation(PVec3(0, 0, 1.0));
+	  break;
+  case 'Z':
+	  escena.rotation(PVec3(0, 0, -1.0));
 	  break;
   default:
     need_redisplay = false;

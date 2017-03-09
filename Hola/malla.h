@@ -14,11 +14,13 @@ public:
 	virtual ~Malla();
 	virtual void draw(){};
 	virtual void resize(int width, int height) {};
-	virtual void setTexture(Textura *textura_) {};
+	virtual void setTexture(Textura *textura_);
 	
 protected:
 	void activar();
 	void desactivar();
+	void activarTextura();
+	void desactivarTextura();
 
 protected:
 	PVec3 *vertices;

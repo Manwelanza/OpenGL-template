@@ -94,3 +94,14 @@ void Geometry::drawRect(GLdouble width, GLdouble height, Color4 color) {
 MallaRect Geometry::createRect(GLdouble width, GLdouble height, Color4 color) {
 	return MallaRect(width, height, color);
 }
+
+// Diabolo
+
+void Geometry::drawDiabolo(int vertex_number, GLdouble radius, GLdouble height) {
+	Diabolo dia = Diabolo(vertex_number, radius, height);
+	dia.draw();
+}
+
+Diabolo Geometry::createDiabolo(int vertex_number, GLdouble radius, GLdouble height) {
+	return Diabolo(vertex_number, radius, height);
+}

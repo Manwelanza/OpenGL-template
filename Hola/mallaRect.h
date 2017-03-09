@@ -17,7 +17,6 @@ public:
 	void draw();
 	bool load(char arch[]);
 	void setSize(GLdouble width, GLdouble height);
-	void setTexture(Textura *texture_);
 	void resize(int width, int height);
 
 protected:

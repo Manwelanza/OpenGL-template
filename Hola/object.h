@@ -18,6 +18,7 @@ public:
 	virtual void init();
 	virtual void draw();
 	virtual void resize (int width, int height);
+	virtual void rotation(PVec3 angles);
 
 public:
 	PVec3 posicion;

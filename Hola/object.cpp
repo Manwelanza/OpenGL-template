@@ -38,12 +38,18 @@ void Object::draw() {
 			malla->draw();
 		}
 		glTranslated(-posicion.x, -posicion.y, -posicion.z);
-		glRotated(-rotaciones[0], 1, 0, 0);
-		glRotated(-rotaciones[1], 0, 1, 0);
 		glRotated(-rotaciones[2], 0, 0, 1);
+		glRotated(-rotaciones[1], 0, 1, 0);
+		glRotated(-rotaciones[0], 1, 0, 0);
 	}
 }
 
 void Object::resize(int width, int height) {
 	malla->resize(width, height);
+}
+
+void Object::rotation(PVec3 angles) {
+	rotaciones[0] += angles.x;
+	rotaciones[1] += angles.y;
+	rotaciones[2] += angles.z;
 }

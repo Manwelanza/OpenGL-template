@@ -66,6 +66,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="diabolo.cpp" />
     <ClCompile Include="escena.cpp" />
     <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="main.cpp" />
@@ -80,6 +81,7 @@
     <ClCompile Include="triAnimado.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="diabolo.h" />
     <ClInclude Include="escena.h" />
     <ClInclude Include="Geometry.h" />
     <ClInclude Include="malla.h" />

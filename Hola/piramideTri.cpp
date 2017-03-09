@@ -5,8 +5,12 @@ PiramideTri::PiramideTri()
 {
 }
 
-PiramideTri::PiramideTri(int vertex_number, GLdouble radius, GLdouble height) {
+PiramideTri::PiramideTri(int vertex_number, GLdouble radius, GLdouble height_):
+radio(radius),
+height(height_)
+{
 	numDat = vertex_number * 3;
+	coordText = new CTex2[numDat];
 
 	GLdouble angle = PI/2;
 	//Como avanza el calculo de puntos en el circulo (2 pi radianes / el numero de puntos que quieras en el circulo)
@@ -30,13 +34,18 @@ PiramideTri::PiramideTri(int vertex_number, GLdouble radius, GLdouble height) {
 		PVec3 c = PVec3(
 			0,
 			0,
-			height);
+			height_);
 		//calculamos la normal como el producto vectorial normalizado de dos lados del triángulo 
 		PVec3 n = ((a - c).cross(b - c)).get_normalized_vector();
-		
+		//vertices
 		vertices[3 * i] = a;
 		vertices[3 * i + 1] = b;
 		vertices[3 * i + 2] = c;
+		//coordenadas de textura
+		coordText[3 * i] = CTex2(1, 0);
+		coordText[3 * i + 1] = CTex2(0, 0);
+		coordText[3 * i + 2] = CTex2(0.5, 1);
+		//normales
 		normales[3 * i] = n;
 		normales[3 * i + 1] = n;
 		normales[3 * i + 2] = n;
@@ -58,4 +67,16 @@ void PiramideTri::draw() {
 bool PiramideTri::load(char arch[]) {
 	//TODO: Implementar esta función
 	return true;
+}
+
+int PiramideTri::getNumDat() {
+	return numDat;
+}
+
+GLdouble PiramideTri::getHeight() {
+	return height;
+}
+
+GLdouble PiramideTri::getRadio() {
+	return radio;
 }

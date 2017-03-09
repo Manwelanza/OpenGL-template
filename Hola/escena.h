@@ -26,9 +26,9 @@ public:
 	~Escena();
 	void init();
 	void draw();
-	void drawDiabolo();
-	void rotarPiramide(GLdouble angulo);
 	void resize(int width, int height);
+	void rotation(PVec3 angles);
+
 
 public:
   Ejes ejes;
@@ -40,6 +40,12 @@ public:
 
   MallaTri triangulo;
   Object tri;
+
+  PiramideTri piramide;
+  Object piram;
+
+  Diabolo diabolo;
+  Object dia;
 };
 
 //-------------------------------------------------------------------------

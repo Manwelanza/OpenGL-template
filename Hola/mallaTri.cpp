@@ -39,33 +39,12 @@ MallaTri::~MallaTri()
 
 void MallaTri::draw() {
 	activar();
-	activarTextura();
 	glColor4d(0.5, 0.5, 0.5, 0.5);
 	glDrawArrays(GL_TRIANGLES, 0, numDat);
 	desactivar();
-	desactivarTextura();
-}
-
-void MallaTri::setTexture(Textura *textura_) {
-	textura = textura_;
 }
 
 bool MallaTri::load(char arch[]){
 	//TODO: Implementar esta función
 	return true;
-}
-
-void MallaTri::activarTextura() {
-	if (textura) {
-		textura->activar();
-		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-		glTexCoordPointer(2, GL_DOUBLE, 0, coordText);
-	}
-}
-
-void MallaTri::desactivarTextura() {
-	if (textura) {
-		textura->desactivar();
-		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	}
 }
