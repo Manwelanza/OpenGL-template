@@ -7,6 +7,8 @@
 #include "textura.h"
 #include "object.h"
 
+enum Estados { Recortar, Animar, Collage, EDiabolo, Pruebas };
+
 //-------------------------------------------------------------------------
 class Ejes {
 public:
@@ -22,30 +24,50 @@ public:
 
 class Escena {
 public:
-	Escena(int width = 100, int height = 100);
+	Escena(int width = 100, int height = 100, Estados modo_ = Recortar);
 	~Escena();
 	void init();
 	void draw();
+	void key(unsigned char key, bool& need_redisplay);
 	void resize(int width, int height);
 	void rotation(PVec3 angles);
 
+private:
+	void recortarInit();
+	void animarInit();
+	void collageInit();
+	void eDiaboloInit();
+	void pruebasInit();
+
+	void recortarDraw();
+	void animarDraw();
+	void collageDraw();
+	void eDiaboloDraw();
+	void pruebasDraw();
+
+	void recortarKey(unsigned char key, bool& need_redisplay);
+	void animarKey(unsigned char key, bool& need_redisplay);
+	void collageKey(unsigned char key, bool& need_redisplay);
+	void eDiaboloKey(unsigned char key, bool& need_redisplay);
+	void pruebasKey(unsigned char key, bool& need_redisplay);
 
 public:
-  Ejes ejes;
-  Geometry* geometry;
-  Textura textura;
+	Ejes ejes;
+	Estados modo;
+	Geometry* geometry;
+	Textura textura;
   
-  MallaRect rectangulo;
-  Object rect;
+	MallaRect rectangulo;
+	Object rect;
 
-  MallaTri triangulo;
-  Object tri;
+	MallaTri triangulo;
+	Object tri;
 
-  PiramideTri piramide;
-  Object piram;
+	PiramideTri piramide;
+	Object piram;
 
-  Diabolo diabolo;
-  Object dia;
+	Diabolo diabolo;
+	Object dia;
 };
 
 //-------------------------------------------------------------------------

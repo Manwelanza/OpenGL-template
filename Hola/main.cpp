@@ -23,7 +23,7 @@ PuertoVista viewPort(0, 0, winWidth, winHeight);
 Camara camera(winWidth, winHeight);
 
 // Scene variables
-Escena escena(winWidth, winHeight);
+Escena escena(winWidth, winHeight, Estados::Pruebas);
 
 //----------- Callbacks ----------------------------------------------------
 
@@ -148,50 +148,32 @@ void resize(int newWidth, int newHeight){
 //-------------------------------------------------------------------------
 
 void key(unsigned char key, int x, int y){
+	bool need_redisplay = true;
+	switch (key) {
+	case 27:  // Escape key 
+		glutLeaveMainLoop(); // Freeglut's sentence for stopping glut's main loop 
+		break;
+	case '+':
+		glScaled(1.1, 1.1, 1.1); // aumentar la escala 
+		break;
+	case '-':
+		glScaled(0.9, 0.9, 0.9); // reducir la escala 
+		break;
+	case 'l':
+		camera.set3D();
+		break;
+	case 'o':
+		camera.setEZ();
+		break;
+	default:
+		need_redisplay = false;
+		break;
+	}
 
-  bool need_redisplay = true;
+	escena.key(key, need_redisplay);
 
-  switch (key) {
-  case 27:  // Escape key 
-    glutLeaveMainLoop(); // Freeglut's sentence for stopping glut's main loop 
-    break;
-  case '+':
-    glScaled(1.1, 1.1, 1.1); // aumentar la escala 
-    break;
-  case '-':
-    glScaled(0.9, 0.9, 0.9); // reducir la escala 
-    break;
-  case 'l':
-	  camera.set3D(); 
-	  break;
-  case 'o':
-	  camera.setEZ();
-	  break;
-  case 'x':
-	  escena.rotation(PVec3(1.0, 0, 0));
-	  break;
-  case 'X':
-	  escena.rotation(PVec3(-1.0, 0, 0));
-	  break;
-  case 'y':
-	  escena.rotation(PVec3(0, 1.0, 0));
-	  break;
-  case 'Y':
-	  escena.rotation(PVec3(0, -1.0, 0));
-	  break;
-  case 'z':
-	  escena.rotation(PVec3(0, 0, 1.0));
-	  break;
-  case 'Z':
-	  escena.rotation(PVec3(0, 0, -1.0));
-	  break;
-  default:
-    need_redisplay = false;
-    break;
-  }//switch
-
-  if (need_redisplay)
-    glutPostRedisplay();
+	if (need_redisplay)
+		glutPostRedisplay();
 }
 
 //-------------------------------------------------------------------------
