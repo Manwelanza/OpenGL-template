@@ -31,6 +31,8 @@ public:
 	void key(unsigned char key, bool& need_redisplay);
 	void resize(int width, int height);
 	void rotation(PVec3 angles);
+	void rotateTri(GLdouble angle);
+	void mouseMoved(int x, int y, int dx, int dy, bool& need_redisplay);
 
 private:
 	void recortarInit();
@@ -68,6 +70,12 @@ public:
 
 	Diabolo diabolo;
 	Object dia;
+
+	TriAnimado triAnimado;
+	Object triA;
+
+	TriMovil triMovil;
+	Object triM;
 };
 
 //-------------------------------------------------------------------------

@@ -53,3 +53,11 @@ void Object::rotation(PVec3 angles) {
 	rotaciones[1] += angles.y;
 	rotaciones[2] += angles.z;
 }
+
+void Object::move(PVec3 movement) {
+	posicion.x += movement.x;
+	posicion.y += movement.y;
+	posicion.z += movement.z;
+}
+
+

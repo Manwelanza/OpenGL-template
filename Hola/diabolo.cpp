@@ -8,7 +8,7 @@ Diabolo::Diabolo()
 Diabolo::Diabolo(int vertex_number, GLdouble radius, GLdouble height):
 PiramideTri(vertex_number, radius, height)
 {
-	pyramid_degree_offset = 180.0 / numDat;
+	pyramid_degree_offset = 180.0 / vertex_number;
 }
 
 

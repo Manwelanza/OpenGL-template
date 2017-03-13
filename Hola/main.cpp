@@ -32,6 +32,7 @@ void resize(int newWidth, int newHeight);
 void key(unsigned char key, int x, int y);
 void specialKey(int key, int x, int y);
 void mouse(int button, int state, int x, int y);
+void mouseMove(int x, int y);
 
 //-------------------------------------------------------------------------
 
@@ -95,6 +96,7 @@ int main(int argc, char *argv[]){
   glutSpecialFunc(specialKey);
   glutDisplayFunc(display);
   glutMouseFunc(mouse);
+  glutMotionFunc(mouseMove);
 
   // OpenGL basic setting
   intitGL();
@@ -205,14 +207,38 @@ void specialKey(int key, int x, int y){
 }
 
 //-------------------------------------------------------------------------
+bool mouse_left_down = false;
+int mouse_x, mouse_y;
 
 void mouse(int button, int state, int x, int y){
-  if ((button == GLUT_LEFT_BUTTON) && (state == GLUT_UP)) { // DOWN
+	x -= winWidth / 2;
+	y = winHeight / 2 - y;
 
-  }
-  else {
+	if (button == GLUT_LEFT_BUTTON) {
+		if (state == GLUT_DOWN) { // DOWN
+			mouse_left_down = true;
+			mouse_x = x;
+			mouse_y = y;
+		}
+		else {
+			mouse_left_down = false;
+		}
+	}
+}
 
-  }
+
+void mouseMove(int x, int y) {
+	x -= winWidth / 2;
+	y = winHeight / 2 - y;
+	if (mouse_left_down) {
+		bool need_redisplay;
+		escena.mouseMoved(mouse_x, mouse_y, x - mouse_x, y - mouse_y, need_redisplay);
+		if (need_redisplay)
+			glutPostRedisplay();
+		mouse_x = x;
+		mouse_y = y;
+	}
+
 }
 
 //-------------------------------------------------------------------------

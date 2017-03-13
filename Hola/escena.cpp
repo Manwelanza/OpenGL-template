@@ -1,5 +1,6 @@
 #include "escena.h"
 #include <GL/freeglut.h>
+#include "tipos.h"
 
 //-------------------------------------------------------------------------
 
@@ -9,18 +10,24 @@ modo(modo_),
 textura(Textura()),
 rect(Object()),
 tri(Object()),
+triA(Object()),
+triM(Object()),
 piram(Object()),
 dia(Object()),
 geometry(Geometry::Instance()),
 triangulo(geometry->createTriangle(3, 60)),
 rectangulo(geometry->createRect(width, height)),
 piramide(geometry->createPyramid(3, 100, 100)),
-diabolo(geometry->createDiabolo(3, 100, 100))
+diabolo(geometry->createDiabolo(3, 100, 100)),
+triAnimado(geometry->createTriAnimado(3, 60, 100)),
+triMovil(geometry->createTriMovil(50))
 {
 	rect.malla = &rectangulo;
 	tri.malla = &triangulo;
 	piram.malla = &piramide;
 	dia.malla = &diabolo;
+	triA.malla = &triAnimado;
+	triM.malla = &triMovil;
 }
 
 //-------------------------------------------------------------------------
@@ -74,6 +81,8 @@ void Escena::pruebasInit() {
 	triangulo.setTexture(&textura);
 	piramide.setTexture(&textura);
 	diabolo.setTexture(&textura);
+	triAnimado.setTexture(&textura);
+	triMovil.setTexture(&textura);
 	glDisable(GL_TEXTURE_2D);
 	// luces
 }
@@ -137,14 +146,23 @@ void Escena::pruebasDraw() {
 	glEnable(GL_TEXTURE_2D);
 	//piram.draw();
 	//tri.draw();
-	dia.draw();
+	//dia.draw();
 	//rect.draw();
+	triA.draw();
+	triM.draw();
 	glDisable(GL_TEXTURE_2D);
 
 	ejes.draw();
 }
 
 //-------------------------------------------------------------------------
+
+void Escena::mouseMoved(int x, int y, int dx, int dy, bool& need_redisplay) {
+	if (PVec3(x, y, 0).inside_triangle_on_plane_z(triMovil.getPoints())) {
+		triMovil.move(PVec3(dx, dy, 0));
+		need_redisplay = true;
+	}
+}
 
 void Escena::key(unsigned char key, bool& need_redisplay) {
 	bool aux_redisplay = true;
@@ -209,6 +227,18 @@ void Escena::pruebasKey(unsigned char key, bool& need_redisplay) {
 	case 'Z':
 		rotation(PVec3(0, 0, -1.0));
 		break;
+	case 't':
+		rotateTri(1);
+		break;
+	case 'T':
+		rotateTri(-1);
+		break;
+	case 'r':
+		triMovil.rotate(5);
+		break;
+	case 'R':
+		triMovil.rotate(-5);
+		break;
 	default:
 		need_redisplay = false;
 		break;
@@ -227,6 +257,12 @@ void Escena::resize(int width, int height) {
 
 void Escena::rotation(PVec3 angles) {
 	dia.rotation(angles);
+}
+
+//-------------------------------------------------------------------------
+
+void Escena::rotateTri(GLdouble angle) {
+	triA.rotation(PVec3(0, 0, angle));
 }
 
 //-------------------------------------------------------------------------

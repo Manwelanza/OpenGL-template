@@ -137,7 +137,20 @@ public:
 	//llamando A al vector original y B al eje:
 	//	R = B*(A dot B)*(1-cos(angle)) + A*cos(angle) + (A cross B)*sin(angle)
 	PVec3 rotate_against_normal_vector(PVec3 v, GLdouble angle) {
-		return v*v.dot(*this)*(1 - cos(angle)) + (*this)*cos(angle) + (*this).cross(v)*sin(angle);
+		return v*v.dot(*this)*(1 - cos(angle * PI / 180.0)) + (*this)*cos(angle * PI / 180.0) + (*this).cross(v)*sin(angle * PI / 180.0);
+	}
+
+	//función que mira si el punto está dentro del triángulo.
+	//se realiza el producto vectorial de los tres triángulos resultantes de unir 
+	//los lados del triángulo argumento con este punto.
+	//si todos tienen la misma orientación, el punto está dentro del triángulo.
+	//NOTA: todos deberían estar en el plano z=0
+	bool inside_triangle_on_plane_z(PVec3* triangle) {
+		GLdouble z1 = (*this - triangle[0]).cross(triangle[1] - triangle[0]).z;
+		GLdouble z2 = (*this - triangle[1]).cross(triangle[2] - triangle[1]).z;
+		GLdouble z3 = (*this - triangle[2]).cross(triangle[0] - triangle[2]).z;
+
+		return z1 < 0 && z2 < 0 && z3 < 0 || z1 > 0 && z2 > 0 && z3 > 0;
 	}
 
 private:

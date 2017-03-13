@@ -10,6 +10,8 @@
 #include "mallaTri.h"
 #include "mallaRect.h"
 #include "diabolo.h"
+#include "triAnimado.h"
+#include "triMovil.h"
 
 class Geometry
 {
@@ -26,6 +28,8 @@ public:
 	MallaTri createTriangle(int vertex_number, GLdouble radius);
 	void drawPyramid(int vertex_number, GLdouble radius, GLdouble height);
 	PiramideTri createPyramid(int vertex_number, GLdouble radius, GLdouble height);
+	TriAnimado createTriAnimado(int vertex_number, GLdouble radius, GLdouble turn_radius);
+	TriMovil createTriMovil(GLdouble radius);
 	//Rectangles
 	void drawRect(GLdouble width, GLdouble height, Color4 color = Color4());
 	MallaRect createRect(GLdouble width, GLdouble height, Color4 color = Color4());

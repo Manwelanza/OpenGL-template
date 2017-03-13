@@ -83,6 +83,14 @@ PiramideTri Geometry::createPyramid(int vertex_number, GLdouble radius, GLdouble
 	return *new PiramideTri(vertex_number, radius, height);
 }
 
+TriAnimado Geometry::createTriAnimado(int vertex_number, GLdouble radius, GLdouble turn_radius) {
+	return *new TriAnimado(vertex_number, radius, turn_radius);
+}
+
+TriMovil Geometry::createTriMovil(GLdouble radius) {
+	return *new TriMovil(radius);
+}
+
 // Rectangles
 
 void Geometry::drawRect(GLdouble width, GLdouble height, Color4 color) {
