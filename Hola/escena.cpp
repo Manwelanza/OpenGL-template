@@ -147,9 +147,11 @@ void Escena::pruebasDraw() {
 	//piram.draw();
 	//tri.draw();
 	//dia.draw();
-	//rect.draw();
-	triA.draw();
 	triM.draw();
+	triA.draw();
+	rect.draw();
+	
+	
 	glDisable(GL_TEXTURE_2D);
 
 	ejes.draw();
@@ -238,6 +240,9 @@ void Escena::pruebasKey(unsigned char key, bool& need_redisplay) {
 		break;
 	case 'R':
 		triMovil.rotate(-5);
+		break;
+	case 'p':
+		triAnimado.play();
 		break;
 	default:
 		need_redisplay = false;

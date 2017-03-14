@@ -1,4 +1,5 @@
 #include "triAnimado.h"
+#include <thread>
 
 
 TriAnimado::TriAnimado(int vertex_number, GLdouble radius, GLdouble turn_radius):
@@ -17,18 +18,25 @@ TriAnimado::~TriAnimado()
 
 void TriAnimado::play() {
 	//TODO: Método que ejecuta una vuelta entera de la animación automáticamente
-	if (objeto) {
+	//if (objeto) {
+		std::thread t1(&TriAnimado::doPlay, this, 10);
+		t1.detach();
+	//}
+}
 
-
+void TriAnimado::doPlay(int msdelay) {
+	int i;
+	for (i = 0; i < 360; i++) {
+		step();
+		Sleep(msdelay);
 	}
 }
 
 void TriAnimado::step() {
 	// TODO: Método que solo ejecuta un paso de la animación
-	if (objeto) {
-		
-
-	}
+	//if (objeto) {
+		rotate(1);
+	//}
 }
 
 void TriAnimado::draw() {

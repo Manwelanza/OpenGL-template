@@ -8,6 +8,7 @@
 #include "mallaTri.h"
 #include <GL/freeglut.h>
 #include <iostream>
+#include <thread>
 
 /**
 	* Clase que ejecutara la siguiente animación:
@@ -29,6 +30,8 @@ public:
 	void rotate(GLdouble angle);
 
 protected:
+	void doPlay(int msDelay);
+
 	Object *objeto;
 	GLdouble velocidad;
 	GLdouble radio;
