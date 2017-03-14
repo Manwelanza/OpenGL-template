@@ -19,6 +19,7 @@ public:
 	int getNumDat();
 	GLdouble getHeight();
 	GLdouble getRadio();
+	void setCoordText(CTex2* coordText_);
 protected:
 	GLdouble radio;
 	GLdouble height;

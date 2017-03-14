@@ -14,7 +14,8 @@ public:
 	virtual ~Malla();
 	virtual void draw(){};
 	virtual void resize(int width, int height) {};
-	virtual void setTexture(Textura *textura_);
+	void setTexture(Textura *textura_);
+	void setCoordText(CTex2* coordText_);
 	
 protected:
 	void activar();

@@ -4,7 +4,9 @@
 
 //-------------------------------------------------------------------------
 
-Escena::Escena(int width, int height, Estados modo_) :
+Escena::Escena(int width_, int height_, Estados modo_) :
+width(width_),
+height(height_),
 ejes(200),
 modo(modo_),
 textura(Textura()),
@@ -28,6 +30,11 @@ triMovil(geometry->createTriMovil(50))
 	dia.malla = &diabolo;
 	triA.malla = &triAnimado;
 	triM.malla = &triMovil;
+}
+
+void Escena::cambiaEstado(Estados modo_) {
+	modo = modo_;
+	init();
 }
 
 //-------------------------------------------------------------------------
@@ -57,11 +64,21 @@ void Escena::init(){
 }
 
 void Escena::recortarInit(){
-
+	glDisable(GL_DEPTH_TEST);
+	// texturas
+	glEnable(GL_TEXTURE_2D);
+	textura.init();
+	textura.load("ray.bmp");
+	rectangulo.setTexture(&textura);
+	glDisable(GL_TEXTURE_2D);
 }
 
 void Escena::animarInit() {
-
+	// texturas
+	glEnable(GL_TEXTURE_2D);
+	triAnimado.setTexture(&textura);
+	triAnimado.setCoordText(triMovil.getCoordTexts(width, height));
+	glDisable(GL_TEXTURE_2D);
 }
 
 void Escena::collageInit(){
@@ -69,7 +86,12 @@ void Escena::collageInit(){
 }
 
 void Escena::eDiaboloInit() {
-
+	glEnable(GL_DEPTH_TEST);
+	// texturas
+	glEnable(GL_TEXTURE_2D);
+	diabolo.setTexture(&textura);
+	diabolo.setCoordText(triMovil.getCoordTexts(width, height));
+	glDisable(GL_TEXTURE_2D);
 }
 
 void Escena::pruebasInit() {
@@ -124,11 +146,25 @@ void Escena::draw(){
 }
 
 void Escena::recortarDraw(){
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
 
+	glEnable(GL_TEXTURE_2D);
+	rect.draw();
+	triM.draw();
+
+
+	glDisable(GL_TEXTURE_2D);
 }
 
 void Escena::animarDraw(){
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
 
+	glEnable(GL_TEXTURE_2D);
+	triA.draw();
+	glDisable(GL_TEXTURE_2D);
+	ejes.draw();
 }
 
 void Escena::collageDraw(){
@@ -136,7 +172,13 @@ void Escena::collageDraw(){
 }
 
 void Escena::eDiaboloDraw(){
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
 
+	glEnable(GL_TEXTURE_2D);
+	dia.draw();
+	glDisable(GL_TEXTURE_2D);
+	ejes.draw();
 }
 
 void Escena::pruebasDraw() {
@@ -194,11 +236,44 @@ void Escena::key(unsigned char key, bool& need_redisplay) {
 }
 
 void Escena::recortarKey(unsigned char key, bool& need_redisplay) {
-
+	switch (key)
+	{
+	case '3':
+		cambiaEstado(Estados::Animar);
+		break;
+	case '4':
+		cambiaEstado(Estados::EDiabolo);
+		break;
+	case 'r':
+		triMovil.rotate(5);
+		break;
+	case 'R':
+		triMovil.rotate(-5);
+		break;
+	default:
+		need_redisplay = false;
+		break;
+	}
 }
 
 void Escena::animarKey(unsigned char key, bool& need_redisplay){
-
+	switch (key)
+	{
+	case '4':
+		cambiaEstado(Estados::EDiabolo);
+		break;
+	case 't':
+		rotateTri(1);
+		triAnimado.rotate(1);
+		break;
+	case 'T':
+		rotateTri(-1);
+		triAnimado.rotate(-1);
+		break;
+	default:
+		need_redisplay = false;
+		break;
+	}
 }
 
 void Escena::collageKey(unsigned char key, bool& need_redisplay){
@@ -206,7 +281,30 @@ void Escena::collageKey(unsigned char key, bool& need_redisplay){
 }
 
 void Escena::eDiaboloKey(unsigned char key, bool& need_redisplay){
-
+	switch (key)
+	{
+	case 'x':
+		rotation(PVec3(1.0, 0, 0));
+		break;
+	case 'X':
+		rotation(PVec3(-1.0, 0, 0));
+		break;
+	case 'y':
+		rotation(PVec3(0, 1.0, 0));
+		break;
+	case 'Y':
+		rotation(PVec3(0, -1.0, 0));
+		break;
+	case 'z':
+		rotation(PVec3(0, 0, 1.0));
+		break;
+	case 'Z':
+		rotation(PVec3(0, 0, -1.0));
+		break;
+	default:
+		need_redisplay = false;
+		break;
+	}
 }
 
 void Escena::pruebasKey(unsigned char key, bool& need_redisplay) {
@@ -231,9 +329,11 @@ void Escena::pruebasKey(unsigned char key, bool& need_redisplay) {
 		break;
 	case 't':
 		rotateTri(1);
+		triAnimado.rotate(1);
 		break;
 	case 'T':
 		rotateTri(-1);
+		triAnimado.rotate(-1);
 		break;
 	case 'r':
 		triMovil.rotate(5);
@@ -252,10 +352,12 @@ void Escena::pruebasKey(unsigned char key, bool& need_redisplay) {
 
 //-------------------------------------------------------------------------
 
-void Escena::resize(int width, int height) {
+void Escena::resize(int width_, int height_) {
 	// Cambiamos el tamaño del fondo y lo centramos
-	rect.resize(width, height);
-	rect.posicion = PVec3(-width / 2, -height / 2, 0);
+	rect.resize(width_, height_);
+	rect.posicion = PVec3(-width_ / 2, -height_ / 2, 0);
+	width = width_;
+	height = height_;
 }
 
 //-------------------------------------------------------------------------

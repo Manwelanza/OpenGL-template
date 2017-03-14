@@ -63,3 +63,10 @@ void Malla::desactivarTextura() {
 void Malla::setTexture(Textura *textura_) {
 	textura = textura_;
 }
+
+void Malla::setCoordText(CTex2* coordtext_) {
+	if (coordText) {
+		delete[] coordText;
+	}
+	coordText = coordtext_;
+}

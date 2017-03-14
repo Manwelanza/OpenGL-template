@@ -25,6 +25,7 @@ public:
 	void rotate(GLdouble angle);
 	void move(PVec3 movement);
 	PVec3* getPoints();
+	CTex2* getCoordTexts(int width, int height);
 
 protected:
 	Object *objeto;

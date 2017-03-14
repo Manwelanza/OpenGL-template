@@ -23,7 +23,7 @@ PuertoVista viewPort(0, 0, winWidth, winHeight);
 Camara camera(winWidth, winHeight);
 
 // Scene variables
-Escena escena(winWidth, winHeight, Estados::Pruebas);
+Escena escena(winWidth, winHeight, Estados::Recortar);
 
 //----------- Callbacks ----------------------------------------------------
 

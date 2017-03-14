@@ -35,6 +35,7 @@ public:
 	void mouseMoved(int x, int y, int dx, int dy, bool& need_redisplay);
 
 private:
+	void cambiaEstado(Estados modo_);
 	void recortarInit();
 	void animarInit();
 	void collageInit();
@@ -54,6 +55,8 @@ private:
 	void pruebasKey(unsigned char key, bool& need_redisplay);
 
 public:
+	int width;
+	int height;
 	Ejes ejes;
 	Estados modo;
 	Geometry* geometry;

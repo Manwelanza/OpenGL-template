@@ -80,3 +80,13 @@ GLdouble PiramideTri::getHeight() {
 GLdouble PiramideTri::getRadio() {
 	return radio;
 }
+
+void PiramideTri::setCoordText(CTex2* coordText_) {
+
+	for (int i = 0; i < numDat / 3; i++)
+	{
+		coordText[3 * i] = coordText_[1];
+		coordText[3 * i + 1] = coordText_[2];
+		coordText[3 * i + 2] = coordText_[0];
+	} 
+}
