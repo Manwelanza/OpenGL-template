@@ -60,10 +60,16 @@ public:
 	Ejes ejes;
 	Estados modo;
 	Geometry* geometry;
-	Textura textura;
+	Textura textura;			// background
+	Textura textura2;			// zelda image
+	Textura textura3;			// world image
   
-	MallaRect rectangulo;
-	Object rect;
+	MallaRect rectangulo;		// background
+	MallaRect rectangulo2;		// zelda image
+	MallaRect rectangulo3;		// world image
+	Object rect;				// background
+	Object rect2;				// zelda image
+	Object rect3;				// world image
 
 	MallaTri triangulo;
 	Object tri;

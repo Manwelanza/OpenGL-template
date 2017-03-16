@@ -10,7 +10,11 @@ height(height_),
 ejes(200),
 modo(modo_),
 textura(Textura()),
+textura2(Textura()),
+textura3(Textura()),
 rect(Object()),
+rect2(Object()),
+rect3(Object()),
 tri(Object()),
 triA(Object()),
 triM(Object()),
@@ -19,17 +23,27 @@ dia(Object()),
 geometry(Geometry::Instance()),
 triangulo(geometry->createTriangle(3, 60)),
 rectangulo(geometry->createRect(width, height)),
+rectangulo2(geometry->createRect(350, 250)),
+rectangulo3(geometry->createRect(350, 250)),
 piramide(geometry->createPyramid(3, 100, 100)),
 diabolo(geometry->createDiabolo(3, 100, 100)),
 triAnimado(geometry->createTriAnimado(3, 60, 100)),
 triMovil(geometry->createTriMovil(50))
 {
 	rect.malla = &rectangulo;
+	rect2.malla = &rectangulo2;
+	rect3.malla = &rectangulo3;
 	tri.malla = &triangulo;
 	piram.malla = &piramide;
 	dia.malla = &diabolo;
 	triA.malla = &triAnimado;
 	triM.malla = &triMovil;
+	
+	rect2.posicion = PVec3(-250, -120, 0);
+	rect2.rotation(PVec3(0,0,-45));
+
+	rect3.posicion = PVec3(250, 120, 0);
+	rect3.rotation(PVec3(0, 0, -45));
 }
 
 void Escena::cambiaEstado(Estados modo_) {
@@ -65,11 +79,23 @@ void Escena::init(){
 
 void Escena::recortarInit(){
 	glDisable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 	// texturas
 	glEnable(GL_TEXTURE_2D);
 	textura.init();
-	textura.load("ray.bmp");
+	textura2.init();
+	textura3.init();
+	textura.load("ray.bmp", 255);
+	textura2.load("Zelda.bmp", 125);
+	PixMap24RGB::rgb_color alphaFilter;
+	alphaFilter.blue = 0;
+	alphaFilter.red = 255;
+	alphaFilter.green = 255;
+	textura3.load("earth24.bmp", alphaFilter, 125);
 	rectangulo.setTexture(&textura);
+	rectangulo2.setTexture(&textura2);
+	rectangulo3.setTexture(&textura3);
 	glDisable(GL_TEXTURE_2D);
 }
 
@@ -104,7 +130,7 @@ void Escena::pruebasInit() {
 	piramide.setTexture(&textura);
 	diabolo.setTexture(&textura);
 	triAnimado.setTexture(&textura);
-	triMovil.setTexture(&textura);
+	//triMovil.setTexture(&textura);
 	glDisable(GL_TEXTURE_2D);
 	// luces
 }
@@ -149,12 +175,15 @@ void Escena::recortarDraw(){
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 
+
 	glEnable(GL_TEXTURE_2D);
 	rect.draw();
-	triM.draw();
-
-
+	rect2.draw();
+	rect3.draw();
 	glDisable(GL_TEXTURE_2D);
+
+	triM.draw();
+	
 }
 
 void Escena::animarDraw(){
@@ -175,10 +204,11 @@ void Escena::eDiaboloDraw(){
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 
+	ejes.draw();
 	glEnable(GL_TEXTURE_2D);
 	dia.draw();
 	glDisable(GL_TEXTURE_2D);
-	ejes.draw();
+	
 }
 
 void Escena::pruebasDraw() {
@@ -355,7 +385,6 @@ void Escena::pruebasKey(unsigned char key, bool& need_redisplay) {
 void Escena::resize(int width_, int height_) {
 	// Cambiamos el tamaño del fondo y lo centramos
 	rect.resize(width_, height_);
-	rect.posicion = PVec3(-width_ / 2, -height_ / 2, 0);
 	width = width_;
 	height = height_;
 }

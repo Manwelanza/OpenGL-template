@@ -39,7 +39,7 @@ MallaTri::~MallaTri()
 
 void MallaTri::draw() {
 	activar();
-	glColor4d(0.5, 0.5, 0.5, 0.5);
+	glColor4d(0, 0, 0, 1);
 	glDrawArrays(GL_TRIANGLES, 0, numDat);
 	desactivar();
 }

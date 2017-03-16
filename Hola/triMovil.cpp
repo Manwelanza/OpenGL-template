@@ -20,6 +20,7 @@ void TriMovil::draw() {
 	glGetFloatv(GL_LINE_WIDTH, &width);
 	glLineWidth(5);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glColor3f(0, 0, 0);
 	MallaTri::draw();
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glLineWidth(width);

@@ -111,6 +111,12 @@
     <Image Include="ray.bmp">
       <Filter>Archivos de recursos</Filter>
     </Image>
+    <Image Include="..\bmps\Zelda.bmp">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="..\bmps\earth24.bmp">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="notas.txt">

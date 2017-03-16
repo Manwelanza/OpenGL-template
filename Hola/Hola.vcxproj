@@ -101,6 +101,8 @@
     <ResourceCompile Include="Hola.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\bmps\earth24.bmp" />
+    <Image Include="..\bmps\Zelda.bmp" />
     <Image Include="ray.bmp" />
   </ItemGroup>
   <ItemGroup>

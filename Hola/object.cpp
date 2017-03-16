@@ -30,17 +30,17 @@ void Object::init(){
 
 void Object::draw() {
 	if (activo) {
+		glTranslated(posicion.x, posicion.y, posicion.z);
 		glRotated(rotaciones[0], 1, 0, 0);
 		glRotated(rotaciones[1], 0, 1, 0);
 		glRotated(rotaciones[2], 0, 0, 1);
-		glTranslated(posicion.x, posicion.y, posicion.z);
 		if (malla) {
 			malla->draw();
 		}
-		glTranslated(-posicion.x, -posicion.y, -posicion.z);
 		glRotated(-rotaciones[2], 0, 0, 1);
 		glRotated(-rotaciones[1], 0, 1, 0);
 		glRotated(-rotaciones[0], 1, 0, 0);
+		glTranslated(-posicion.x, -posicion.y, -posicion.z);
 	}
 }
 

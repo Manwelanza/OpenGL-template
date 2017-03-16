@@ -46,7 +46,7 @@ void Malla::desactivar() {
 }
 
 void Malla::activarTextura() {
-	if (textura) {
+		if (textura) {
 		textura->activar();
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 		glTexCoordPointer(2, GL_DOUBLE, 0, coordText);

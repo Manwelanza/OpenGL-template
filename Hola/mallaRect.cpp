@@ -18,10 +18,10 @@ MallaRect::MallaRect(GLdouble width, GLdouble height, Color4 color_)
 }
 
 void MallaRect::createPoints(GLdouble width, GLdouble height) {
-	vertices[0] = PVec3(0, 0, 0);
-	vertices[1] = PVec3(0, height, 0);
-	vertices[2] = PVec3(width, 0, 0);
-	vertices[3] = PVec3(width, height, 0);
+	vertices[0] = PVec3(-width/2, -height/2, 0);
+	vertices[1] = PVec3(-width/2, height/2, 0);
+	vertices[2] = PVec3(width/2, -height/2, 0);
+	vertices[3] = PVec3(width/2, height/2, 0);
 }
 
 MallaRect::~MallaRect()
@@ -53,8 +53,8 @@ void MallaRect::activar() {
 void MallaRect::desactivar() {
 	glDisableClientState(GL_VERTEX_ARRAY);
 	if (textura) {
-		textura->desactivar();
 		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+		textura->desactivar();
 	}
 	
 }
