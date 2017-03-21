@@ -24,3 +24,45 @@ Deteción de que pinchamos dentro de un triángulo:
 	Hay que modificar los vértices par detectar bien el click (Si lo hacemos con transformaciones, siempre miraríamos la detección de click con el origen).
 	Guardar rotación + desplazamiento y queda hecho
 		
+		
+Última parte de la práctica:
+	Debemos hacer el recorte del triángulo de TODO lo que se muestra en pantalla, incluidos los ejes y demás. Para ello:
+		-Debemos hacer de todo lo que se ve una textura
+		-El triángulo bebe de esa textura al hacer el recorte.		
+		-Una vez hecha la textura, podemos opcionalmente guardarla en archivo
+			-Por tanto tenemos métodos para cargar las texturas a GPU
+			-Y otro para llevar las imágenes de la GPU al ordenador y guardarla.
+		0) Declaramos un pixmap (que se crea a tamaño 0)
+			pixMap....
+			create_pixmap(width, height)
+			
+		1) Hacemos una textura desde el buffer de colores (está en la GPU)
+		2) Copiamos dicha textura de vuelta en una estructura de imagen o similar
+			//hay que activar la textura antes de guardar (si no activamos no se guardará)
+			//copiar en textura activa la imagen del color buffer
+			glCopyTexImage2D(GL_TEXTURE_"d, level, internalFormat, xl, yb, w, h, border);
+				//xl, yb: comienzo de coordenadas
+				//w, h: anchura y altura (por si no lo cogemos entero)
+			//copiar de la textura a un mapa de bits
+			glGetTexImage(GL_TEXTURE_2D, 0, GL_RGB, GL_UNSIGNED_BYTE, pixmap.map());
+			
+			
+		3) Guardamos lo anterior
+			pixMap.save_BMPBGR(&name);
+		
+		
+	Blendings: 
+		-opción de no mezclar: se mantiene el color más cercano 
+		-opción de mezclar: se hacen medias según una fórmula configurable a nivel de píxel
+		-configuración de la fórmula de blending: dos intervalos [0, 1] de los porcentajes de cada elemento (lo que ya hay en el búfer vs lo que se va a añadir)
+		-Cambiar estas opciones según el estado (collage, etc)
+		Para dibujar cosas opacas y transparentes ver instrucciones de las diapositivas (para ver qué problemas puede haber con el depth check y blending)
+	
+	Varios Viewport:
+		-ClearBuffer
+		-Configurar puerto de vista original
+		-Dibujo1
+		-Cambia puerto de vista
+		-Dibujo 2
+		-...
+		-Swapbuffers
