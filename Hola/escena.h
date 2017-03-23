@@ -63,6 +63,7 @@ public:
 	Textura textura;			// background
 	Textura textura2;			// zelda image
 	Textura textura3;			// world image
+	Textura texturaCollage;
   
 	MallaRect rectangulo;		// background
 	MallaRect rectangulo2;		// zelda image

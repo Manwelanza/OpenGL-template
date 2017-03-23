@@ -12,6 +12,7 @@ modo(modo_),
 textura(Textura()),
 textura2(Textura()),
 textura3(Textura()),
+texturaCollage(Textura()),
 rect(Object()),
 rect2(Object()),
 rect3(Object()),
@@ -47,6 +48,10 @@ triMovil(geometry->createTriMovil(50))
 }
 
 void Escena::cambiaEstado(Estados modo_) {
+	if (modo == Estados::Collage) {
+		//glEnable(GL_DEPTH_TEST);
+		//glDisable(GL_BLEND);
+	}
 	modo = modo_;
 	init();
 }
@@ -78,9 +83,40 @@ void Escena::init(){
 }
 
 void Escena::recortarInit(){
+	// TODO: cambiar textura a rectangulo por la del collage
 	glDisable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);
-	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_TEXTURE_2D);
+	texturaCollage.init();
+	//texturaCollage.load("Zelda.bmp", 127);
+	//texturaCollage.activar();
+	//textura2.desactivar();
+	//textura3.desactivar();
+	//textura.activar();
+	//texturaCollage.w = width;
+	//texturaCollage.h = height;
+	glBindTexture(GL_TEXTURE_2D, textura.id);
+	glCopyTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 0, 0, width, height, 0); // crear la textura con la imagen de pantalla
+	printf("HOLALALALALALALALALALALALA\n");
+	if (glGetError() != GL_NO_ERROR)
+		printf("ERRORORORORORORORROROR\n");
+	rectangulo.setTexture(&textura);
+	glDisable(GL_TEXTURE_2D);
+
+}
+
+void Escena::animarInit() {
+	// texturas
+	glEnable(GL_TEXTURE_2D);
+	triAnimado.setTexture(&textura);
+	triAnimado.setCoordText(triMovil.getCoordTexts(width, height));
+	glDisable(GL_TEXTURE_2D);
+}
+
+void Escena::collageInit(){
+	glDisable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	// texturas
 	glEnable(GL_TEXTURE_2D);
 	textura.init();
@@ -97,18 +133,6 @@ void Escena::recortarInit(){
 	rectangulo2.setTexture(&textura2);
 	rectangulo3.setTexture(&textura3);
 	glDisable(GL_TEXTURE_2D);
-}
-
-void Escena::animarInit() {
-	// texturas
-	glEnable(GL_TEXTURE_2D);
-	triAnimado.setTexture(&textura);
-	triAnimado.setCoordText(triMovil.getCoordTexts(width, height));
-	glDisable(GL_TEXTURE_2D);
-}
-
-void Escena::collageInit(){
-
 }
 
 void Escena::eDiaboloInit() {
@@ -178,8 +202,6 @@ void Escena::recortarDraw(){
 
 	glEnable(GL_TEXTURE_2D);
 	rect.draw();
-	rect2.draw();
-	rect3.draw();
 	glDisable(GL_TEXTURE_2D);
 
 	triM.draw();
@@ -197,7 +219,15 @@ void Escena::animarDraw(){
 }
 
 void Escena::collageDraw(){
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
 
+
+	glEnable(GL_TEXTURE_2D);
+	rect.draw();
+	rect2.draw();
+	rect3.draw();
+	glDisable(GL_TEXTURE_2D);
 }
 
 void Escena::eDiaboloDraw(){
@@ -307,7 +337,16 @@ void Escena::animarKey(unsigned char key, bool& need_redisplay){
 }
 
 void Escena::collageKey(unsigned char key, bool& need_redisplay){
-
+	switch (key)
+	{
+	case '2':
+		glutSwapBuffers();
+		cambiaEstado(Estados::Recortar);
+		break;
+	default:
+		need_redisplay = false;
+		break;
+	}
 }
 
 void Escena::eDiaboloKey(unsigned char key, bool& need_redisplay){
