@@ -210,13 +210,16 @@ public:
 
 class PuertoVista {
 public:
-  PuertoVista(GLuint ax, GLuint ay, GLsizei aw, GLsizei ah) : x(ax), y(ay), w(aw), h(ah) {};
+  PuertoVista(GLuint ax, GLuint ay, GLsizei aw, GLsizei ah, bool atiling = false) : x(ax), y(ay), w(aw), h(ah), tiling(atiling) {};
   ~PuertoVista() {};
-  void set(GLuint ax, GLuint ay, GLsizei aw, GLsizei ah){ x = ax; y = ay; w = aw; h = ah; set(); };
+  void set(GLuint ax, GLuint ay, GLsizei aw, GLsizei ah){ x = ax; y = ay; w = aw; h = ah;};
   void set();
+  void setTiled(int i, int j, const int I_MAX, const int J_MAX);
 public:
   GLint x, y;
   GLsizei w, h;
+  bool tiling;
+
 };
 
 //-------------------------------------------------------------------------

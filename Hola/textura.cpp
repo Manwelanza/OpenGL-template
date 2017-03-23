@@ -116,16 +116,16 @@ bool Textura::load(const std::string & BMP_Name, PixMap24RGB::rgb_color colorKey
 
 
 
-void Textura::save(const std::string & BMP_Name) {
+void Textura::save(const std::string & BMP_Name, int aw, int ah) {
 	//create_pixmap
 	PixMap24RGB pixMap;
-	pixMap.create_pixmap(w, h);
+	pixMap.create_pixmap(aw, ah);
 
+	glBindTexture(GL_TEXTURE_2D, id);
 	glGetTexImage(GL_TEXTURE_2D, 0, GL_RGB, // obtener de openGL
 		GL_UNSIGNED_BYTE, pixMap.data());
 
 
 	pixMap.save_bmpBGR(BMP_Name);
 	// pA array donde guardar los datos (de tipo y tamaño adecuado)
-	// TODO y guardar
 }

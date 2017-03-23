@@ -23,7 +23,7 @@ PuertoVista viewPort(0, 0, winWidth, winHeight);
 Camara camera(winWidth, winHeight);
 
 // Scene variables
-Escena escena(winWidth, winHeight, Estados::Recortar);
+Escena escena(winWidth, winHeight, Estados::Collage);
 
 //----------- Callbacks ----------------------------------------------------
 
@@ -121,9 +121,20 @@ void display(){
   glMatrixMode(GL_MODELVIEW);
   glPushMatrix();
 
-  //glPolygonMode(GL_FRONT_AND_BACK, GL_LINES); //Para que se vea solo las lineas supuestamente
-  // Mirar como funciona el comando anterior, porque no funciona en ningun sitio
-  escena.draw();
+  if (!viewPort.tiling) {
+	  viewPort.set();
+	  escena.draw();
+  }
+  else {
+	  int I_MAX = 4, J_MAX = 3;
+	  for (int i = 0; i < I_MAX; i++) {
+		  for (int j = 0; j < J_MAX; j++) {
+			  viewPort.setTiled(i, j, I_MAX, J_MAX);
+			  escena.draw();
+		  }
+	  }
+	  
+  }
 
   glPopMatrix();
   
@@ -166,6 +177,9 @@ void key(unsigned char key, int x, int y){
 		break;
 	case 'o':
 		camera.setEZ();
+		break;
+	case 'm':
+		viewPort.tiling = !viewPort.tiling;
 		break;
 	default:
 		need_redisplay = false;

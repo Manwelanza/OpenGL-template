@@ -26,7 +26,7 @@ public:
 	};
 	void desactivar() { glBindTexture(GL_TEXTURE_2D, 0); };
 	bool load(const std::string & BMP_Name); // cargar y transferir a openGL
-	void save(const std::string & BMP_Name); // obtener de openGL y guardar
+	void save(const std::string & BMP_Name, int aw, int ah); // obtener de openGL y guardar
 
 	bool load(const std::string & BMP_Name, GLubyte alpha);
 	bool load(const std::string & BMP_Name, PixMap24RGB::rgb_color colorKey, GLubyte alpha);
