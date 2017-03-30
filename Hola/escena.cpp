@@ -48,10 +48,6 @@ triMovil(geometry->createTriMovil(50))
 }
 
 void Escena::cambiaEstado(Estados modo_) {
-	/*if (modo == Estados::Collage) {
-		glEnable(GL_DEPTH_TEST);
-		glDisable(GL_BLEND);
-	}*/
 	modo = modo_;
 	init();
 }
@@ -214,8 +210,6 @@ void Escena::animarDraw(){
 void Escena::collageDraw(){
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
-
-
 	glEnable(GL_TEXTURE_2D);
 	rect.draw();
 	rect2.draw();
@@ -333,7 +327,6 @@ void Escena::collageKey(unsigned char key, bool& need_redisplay){
 	switch (key)
 	{
 	case '2':
-		//glutSwapBuffers();
 		cambiaEstado(Estados::Recortar);
 		break;
 	default:
