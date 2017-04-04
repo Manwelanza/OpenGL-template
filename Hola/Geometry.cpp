@@ -113,3 +113,36 @@ void Geometry::drawDiabolo(int vertex_number, GLdouble radius, GLdouble height) 
 Diabolo Geometry::createDiabolo(int vertex_number, GLdouble radius, GLdouble height) {
 	return Diabolo(vertex_number, radius, height);
 }
+
+// Cube
+void Geometry::drawCube() {
+	MallaRect rect = createRect(10, 10);
+	glTranslated(0, 0, -5);
+
+	rect.draw();
+	glTranslated(0, 0, 10);
+	rect.draw();
+	glTranslated(0, 0, -10);
+
+	glTranslated(0, -5, 5);
+	glRotated(-90, 1, 0, 0);
+	rect.draw();
+	glRotated(90,1,0,0);
+	glTranslated(0,10,0);
+	glRotated(-90, 1, 0, 0);
+	rect.draw();
+	glRotated(90, 1, 0, 0);
+	glTranslated(0, -5, -5);
+
+	glTranslated(-5, 0, 5);
+	glRotated(-90, 0, 1, 0);
+	rect.draw();
+	glRotated(90, 0, 1, 0);
+	glTranslated(10,0,0);
+	glRotated(-90, 0, 1, 0);
+	rect.draw();
+	glRotated(90, 0, 1, 0);
+	glTranslated(-5,0,-5);
+
+	glTranslated(0, 0, 5);
+}

@@ -51,7 +51,10 @@ CTex2* TriMovil::getCoordTexts(int width, int height) {
 	PVec3* vertices = getPoints();
 	CTex2* coordText_ = new CTex2[3];
 	for (int i = 0; i < 3; i++) {
+		//pasamos del sistema de coordenadas centradas en el medio de la pantalla
+		//a las coordenadas centradas en la esquina inferior derecha
 		vertices[i] += PVec3(width / 2.0, height / 2, 0);
+		//transformamos las coordenadas al intervalo 0,1
 		coordText_[i] = CTex2(vertices[i].x / width, vertices[i].y / height);
 	}
 	return coordText_;

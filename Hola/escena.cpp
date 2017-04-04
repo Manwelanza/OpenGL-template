@@ -236,10 +236,13 @@ void Escena::pruebasDraw() {
 	//piram.draw();
 	//tri.draw();
 	//dia.draw();
-	triM.draw();
-	triA.draw();
-	rect.draw();
-	
+	//triM.draw();
+	//triA.draw();
+	//rect.draw();
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	//geometry->drawCube();
+	Cube cube(10);
+	cube.draw();
 	
 	glDisable(GL_TEXTURE_2D);
 

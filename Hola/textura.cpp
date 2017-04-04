@@ -59,6 +59,7 @@ bool Textura::load(const std::string & BMP_Name, GLubyte alpha) {
 	//activamos la textura a la cual transferir la imagen
 	glBindTexture(GL_TEXTURE_2D, id);
 	//transferimos la imagen a opengl
+	GLubyte * aux = pixMap.create_RGBA(alpha);
 	glTexImage2D(GL_TEXTURE_2D,
 		0,					//mipmap level
 		GL_RGBA,			//
@@ -67,9 +68,9 @@ bool Textura::load(const std::string & BMP_Name, GLubyte alpha) {
 		0,					//borde: a cero porque no hay
 		GL_RGBA,			//
 		GL_UNSIGNED_BYTE,	//tipo de datos
-		pixMap.create_RGBA(alpha));		//puntero a los datos
+		aux);		//puntero a los datos
 
-	
+	delete[] aux;
 
 	return true;
 	//TODO
@@ -100,6 +101,7 @@ bool Textura::load(const std::string & BMP_Name, PixMap24RGB::rgb_color colorKey
 	//activamos la textura a la cual transferir la imagen
 	glBindTexture(GL_TEXTURE_2D, id);
 	//transferimos la imagen a opengl
+	GLubyte * aux = pixMap.create_RGBA(colorKey, alpha);
 	glTexImage2D(GL_TEXTURE_2D,
 		0,					//mipmap level
 		GL_RGBA,				//
@@ -108,8 +110,9 @@ bool Textura::load(const std::string & BMP_Name, PixMap24RGB::rgb_color colorKey
 		0,					//borde: a cero porque no hay
 		GL_RGBA,				//
 		GL_UNSIGNED_BYTE,	//tipo de datos
-		pixMap.create_RGBA(colorKey, alpha));		//puntero a los datos
-
+		aux);		//puntero a los datos
+	
+	delete [] aux;
 	return true;
 	//TODO
 }
